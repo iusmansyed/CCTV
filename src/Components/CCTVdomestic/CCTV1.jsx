@@ -1,6 +1,12 @@
 import React from "react";
 
-const Step1 = ({ formData, handleChange }) => {
+const CCTV1 = ({ formData, handleChange }) => {
+  const categoryOptions = [
+    { value: "", label: "Service Required" },
+    { value: "CCTV", label: "CCTV" },
+    { value: "Alarm", label: "Alarm" },
+  ];
+
   return (
     <div>
       <form>
@@ -40,4 +46,4 @@ const Step1 = ({ formData, handleChange }) => {
   );
 };
 
-export default Step1;
+export default CCTV1;
