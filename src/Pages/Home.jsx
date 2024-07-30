@@ -17,40 +17,46 @@ const AlarmDomestic = [AD1];
 const AlarmCommercial = [AC1];
 
 const Home = () => {
-  const [steps, setSteps] = useState(defaultSteps); // Initialize with default steps
+  const [steps, setSteps] = useState([]); // Initialize with default steps
   const [currentStep, setCurrentStep] = useState(0); // Step index starts from 0
   const [formData, setFormData] = useState({
     fullName: "",
-    Email: "",
-    Contact: "",
-    Postal: "",
-    Address: "",
+    email: "",
+    contact: "",
+    postal: "",
+    address: "",
     service: "",
     sector: "",
   });
 
   // Effect to update steps based on formData changes
   useEffect(() => {
-    console.log("formData.service:", formData.service); // Debugging log
+    if (!formData.sector && !formData.service) {
+      setSteps(defaultSteps);
+    }
+    console.log("formData.service:", formData); // Debugging log
     console.log("formData.sector:", formData.sector); // Debugging log
     if (formData.service === "CCTV" && formData.sector === "Domestic") {
       setSteps(CCTVDomestic);
+      setCurrentStep(0)
+      // console.log("CCTVDomestic =====>", CCTVDomestic);
     } else if (
       formData.service === "CCTV" &&
       formData.sector === "Commercial"
     ) {
       setSteps(CCTVCommercial);
+      setCurrentStep(0)
     } else if (formData.service === "Alarm" && formData.sector === "Domestic") {
       setSteps(AlarmDomestic);
+      setCurrentStep(0)
     } else if (
       formData.service === "Alarm" &&
       formData.sector === "Commercial"
     ) {
       setSteps(AlarmCommercial);
-    } else {
-      setSteps(defaultSteps);
+      setCurrentStep(0)
     }
-  }, [formData.service, formData.sector]);
+  }, [formData.service, formData.sector, steps]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,6 +66,13 @@ const Home = () => {
     }));
   };
 
+
+  // useEffect(() => {
+    
+  //   return () => {
+      
+  //   };
+  // }, []);
   const nextStep = () => {
     setCurrentStep((prevStep) => Math.min(prevStep + 1, steps.length - 1));
   };
@@ -76,7 +89,7 @@ const Home = () => {
         <div>
           {StepComponent && (
             <StepComponent formData={formData} handleChange={handleChange} />
-          )} 
+          )}
           <div className={styles.btn}>
             {currentStep > 0 && <button onClick={prevStep}>Previous</button>}
             {currentStep < steps.length - 1 ? (
