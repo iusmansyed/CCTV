@@ -1,11 +1,10 @@
 import React from "react";
 
-const CCTV2 = ({ formData, handleChange }) => {
+const CCTV5 = ({ formData, handleChange }) => {
   const categoryOptions = [
-    { value: "", label: "size of property" },
-    { value: "Small", label: "Small" },
-    { value: "Medium", label: "Medium" },
-    { value: "Large", label: "Large" },
+    { value: "", label: "camera location" },
+    { value: "Indoor", label: "Indoor" },
+    { value: "Outdoor", label: "Outdoor" },
   ];
   return (
     <>
@@ -26,12 +25,12 @@ const CCTV2 = ({ formData, handleChange }) => {
         <div className="row">
           <div className="col-lg-6">
             <div className="inp">
-              <label htmlFor="fullName">Number of Floors</label>
+              <label htmlFor="fullName">Height of Installation</label>
               <input
                 type="text"
                 id="numberOfFloor"
                 name="numberOfFloor"
-                placeholder="Enter A Number"
+                placeholder="Enter a height"
                 value={formData.numberOfFloor}
                 onChange={handleChange}
                 required
@@ -39,18 +38,8 @@ const CCTV2 = ({ formData, handleChange }) => {
             </div>
           </div>
           <div className="col-lg-6">
-            <div className="inp">
-              <label htmlFor="fullName">Number of Entry points</label>
-              <input
-                type="text"
-                id="numberOfEntry"
-                name="numberOfEntry"
-                placeholder="Enter a Number"
-                value={formData.numberOfEntry}
-                onChange={handleChange}
-                required
-              />
-            </div>
+            <h3>Feature to take a picture</h3>
+            <input type="file" accept="image/*" capture="camera"></input>
           </div>
         </div>
       </div>
@@ -58,4 +47,4 @@ const CCTV2 = ({ formData, handleChange }) => {
   );
 };
 
-export default CCTV2;
+export default CCTV5;

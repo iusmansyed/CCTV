@@ -8,15 +8,18 @@ import AC1 from "../Components/AlarmCommercial/Step1";
 import CC1 from "../Components/CCTVCommercial/Step1";
 import CD1 from "../Components/CCTVdomestic/CCTV1";
 import CD2 from "../Components/CCTVdomestic/CCTV2";
+import CD3 from "../Components/CCTVdomestic/CCTV3";
+import CD4 from "../Components/CCTVdomestic/CCTV4";
 import Sidebar from "../Components/SideBar/Sidebar";
 
 const defaultSteps = [Step1, Step2, Step3];
-const CCTVDomestic = [CD1, CD2];
+const CCTVDomestic = [CD1, CD2, CD3, CD4];
 const CCTVCommercial = [CC1];
 const AlarmDomestic = [AD1];
 const AlarmCommercial = [AC1];
 
 const Home = () => {
+  const [state, setState] = useState("");
   const [steps, setSteps] = useState([]); // Initialize with default steps
   const [currentStep, setCurrentStep] = useState(0); // Step index starts from 0
   const [formData, setFormData] = useState({
@@ -31,33 +34,39 @@ const Home = () => {
   const [CCtvD, setCCtvD] = useState({
     postal: "",
     house: "",
+    size: "",
+    numberOfFloor: "",
+    numberOfEntry: "",
+    purpose: "",
+    specificArea:"",
+    RecentSecurity:""
   });
+  console.log(CCtvD, "cawdwada");
   // Effect to update steps based on formData changes
   useEffect(() => {
     if (!formData.sector && !formData.service) {
       setSteps(defaultSteps);
     }
-    console.log("formData.service:", formData); // Debugging log
-    console.log("formData.sector:", formData.sector); // Debugging log
     if (formData.service === "CCTV" && formData.sector === "Domestic") {
       setSteps(CCTVDomestic);
-      setCurrentStep(0)
+      setState("cctvd");
+      setCurrentStep(0);
       // console.log("CCTVDomestic =====>", CCTVDomestic);
     } else if (
       formData.service === "CCTV" &&
       formData.sector === "Commercial"
     ) {
       setSteps(CCTVCommercial);
-      setCurrentStep(0)
+      setCurrentStep(0);
     } else if (formData.service === "Alarm" && formData.sector === "Domestic") {
       setSteps(AlarmDomestic);
-      setCurrentStep(0)
+      setCurrentStep(0);
     } else if (
       formData.service === "Alarm" &&
       formData.sector === "Commercial"
     ) {
       setSteps(AlarmCommercial);
-      setCurrentStep(0)
+      setCurrentStep(0);
     }
   }, [formData.service, formData.sector, steps]);
 
@@ -76,11 +85,10 @@ const Home = () => {
     }));
   };
 
-
   // useEffect(() => {
-    
+
   //   return () => {
-      
+
   //   };
   // }, []);
   const nextStep = () => {
@@ -98,7 +106,10 @@ const Home = () => {
       <div className={styles.main}>
         <div>
           {StepComponent && (
-            <StepComponent formData={formData} handleChange={handleChange} />
+            <StepComponent
+              formData={state === "cctvd" ? CCtvD : formData}
+              handleChange={state === "cctvd" ? handleChange2 : handleChange}
+            />
           )}
           <div className={styles.btn}>
             {currentStep > 0 && <button onClick={prevStep}>Previous</button>}

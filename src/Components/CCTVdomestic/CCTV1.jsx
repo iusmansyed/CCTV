@@ -2,9 +2,11 @@ import React from "react";
 
 const CCTV1 = ({ formData, handleChange }) => {
   const categoryOptions = [
-    { value: "", label: "Service Required" },
-    { value: "CCTV", label: "CCTV" },
-    { value: "Alarm", label: "Alarm" },
+    { value: "", label: "Style of House" },
+    { value: "Flat", label: "Flat" },
+    { value: "Detached", label: "Detached" },
+    { value: "Semi Detached", label: "Semi Detached" },
+    { value: "Terraced", label: "Terraced" },
   ];
 
   return (
@@ -17,10 +19,10 @@ const CCTV1 = ({ formData, handleChange }) => {
                 <label htmlFor="fullName">Postal</label>
                 <input
                   type="text"
-                  id="fullName"
-                  name="fullName"
-                  placeholder="Enter your full name"
-                  value={formData.fullName}
+                  id="postal"
+                  name="postal"
+                  placeholder="Enter your postal number"
+                  value={formData.postal}
                   onChange={handleChange}
                   required
                 />
@@ -30,7 +32,7 @@ const CCTV1 = ({ formData, handleChange }) => {
         </div>
       </form>
       <div>
-        <select name="service" value={formData.service} onChange={handleChange}>
+        <select name="house" value={formData.house} onChange={handleChange}>
           {categoryOptions.map((option) => (
             <option
               style={{ padding: "20px" }}

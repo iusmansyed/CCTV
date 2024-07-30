@@ -25,7 +25,12 @@ select {
   background-color: var(--form-bg);
   border-radius: 10px;
   font-family: var(--font-regular);
+  margin-bottom: 30px;
+  text-transform: capitalize;
 }
 .dd {
   padding: 20px !important;
+}
+p {
+  margin-bottom: 0;
 }
