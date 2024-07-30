@@ -6,8 +6,8 @@ import Step3 from "../Components/Forms/Step3";
 import AD1 from "../Components/AlarmDomestic/Step1";
 import AC1 from "../Components/AlarmCommercial/Step1";
 import CC1 from "../Components/CCTVCommercial/Step1";
-import CD1 from "../Components/CCTVdomestic/Step1";
-import CD2 from "../Components/CCTVdomestic/Step2";
+import CD1 from "../Components/CCTVdomestic/CCTV1";
+import CD2 from "../Components/CCTVdomestic/CCTV2";
 import Sidebar from "../Components/SideBar/Sidebar";
 
 const defaultSteps = [Step1, Step2, Step3];
@@ -28,7 +28,10 @@ const Home = () => {
     service: "",
     sector: "",
   });
-
+  const [CCtvD, setCCtvD] = useState({
+    postal: "",
+    house: "",
+  });
   // Effect to update steps based on formData changes
   useEffect(() => {
     if (!formData.sector && !formData.service) {
@@ -61,6 +64,13 @@ const Home = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+  const handleChange2 = (e) => {
+    const { name, value } = e.target;
+    setCCtvD((prevFormData) => ({
       ...prevFormData,
       [name]: value,
     }));
