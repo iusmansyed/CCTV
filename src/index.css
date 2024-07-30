@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: Inter-bold;
+  src: url("./assets/Fonts/Inter-Bold.ttf");
+}
+@font-face {
+  font-family: Inter-semi;
+  src: url("./assets/Fonts/Inter-SemiBold.ttf");
+}
+@font-face {
+  font-family: Inter-regular;
+  src: url("./assets/Fonts/Inter-Regular.ttf");
+}
+:root {
+  --font-regular: Inter-regular;
+  --font-semi: Inter-semi;
+  --font-bold: Inter-bold;
+  --form-bg: #c9c9c9;
+  --sideBar-bg:#009CFF
+}

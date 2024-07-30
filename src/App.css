@@ -1,0 +1,31 @@
+.inp {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+input {
+  background-color: var(--form-bg);
+  border: none;
+  outline: none;
+  padding: 20px 10px;
+  border-radius: 10px;
+  font-family: var(--font-regular);
+}
+label {
+  text-transform: capitalize;
+  font-family: var(--font-regular);
+}
+
+select {
+  width: 100%;
+  padding: 20px 10px;
+  border: none;
+  outline: none;
+  background-color: var(--form-bg);
+  border-radius: 10px;
+  font-family: var(--font-regular);
+}
+.dd {
+  padding: 20px !important;
+}

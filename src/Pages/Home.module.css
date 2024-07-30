@@ -1,0 +1,18 @@
+.main {
+  margin-left: 350px;
+  padding: 100px 200px;
+}
+.btn {
+  position: relative;
+}
+.btn button {
+  padding: 10px 50px;
+  position: absolute;
+  right: 0;
+  top: 20px;
+  border: none;
+  background-color: var(--sideBar-bg);
+  color: #fff;
+  font-family: var(--font-regular);
+  border-radius: 12px;
+}
