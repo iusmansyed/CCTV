@@ -1,4 +1,5 @@
 import React from "react";
+import CustomDropdown from "../Dropdown/DropDown";
 
 const CCTV1 = ({ formData, handleChange }) => {
   const categoryOptions = [
@@ -32,17 +33,12 @@ const CCTV1 = ({ formData, handleChange }) => {
         </div>
       </form>
       <div>
-        <select name="house" value={formData.house} onChange={handleChange}>
-          {categoryOptions.map((option) => (
-            <option
-              style={{ padding: "20px" }}
-              key={option.value}
-              value={option.value}
-            >
-              {option.label}
-            </option>
-          ))}
-        </select>
+        <CustomDropdown
+          options={categoryOptions}
+          name="house"
+          value={formData.house}
+          onChange={handleChange}
+        />
       </div>
     </div>
   );

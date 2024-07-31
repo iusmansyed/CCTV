@@ -1,0 +1,50 @@
+.main {
+    width: 350px;
+    position: fixed;
+    height: 100vh;
+    background-color: var(--sideBar-bg);
+    padding: 45px 0px;
+}
+
+.head {
+    border-bottom: 1px solid white;
+    padding: 20px;
+}
+
+.head h3 {
+    color: #fff;
+    font-family: var(--font-semi);
+}
+
+.text {
+    padding: 20px;
+}
+
+.text p {
+    color: #fff;
+    font-family: var(--font-regular);
+    line-height: revert;
+}
+
+.price {
+    padding: 20px;
+}
+
+.price p {
+    color: #fff;
+    font-family: var(--font-regular);
+    line-height: revert;
+    font-size: 25px;
+}
+
+.price button {
+    width: 90%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    text-transform: capitalize;
+    margin-top: 30px;
+    background: linear-gradient(90deg, #8195FF, #B3ACFF);
+    color: #fff;
+font-family: var(--font-regular);
+}

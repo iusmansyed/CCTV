@@ -1,4 +1,5 @@
 import React from "react";
+import CustomDropdown from "../Dropdown/DropDown";
 
 const CCTV2 = ({ formData, handleChange }) => {
   const categoryOptions = [
@@ -10,17 +11,13 @@ const CCTV2 = ({ formData, handleChange }) => {
   return (
     <>
       <div>
-        <select name="size" value={formData.size} onChange={handleChange}>
-          {categoryOptions.map((option) => (
-            <option
-              style={{ padding: "20px" }}
-              key={option.value}
-              value={option.value}
-            >
-              {option.label}
-            </option>
-          ))}
-        </select>
+        
+        <CustomDropdown
+          options={categoryOptions}
+          name="size"
+          value={formData.size}
+          onChange={handleChange}
+        />
       </div>
       <div className="col-lg-12">
         <div className="row">

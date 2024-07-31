@@ -1,0 +1,46 @@
+.custom_select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .select_selected {
+    width: 100%;
+    padding: 20px 10px;
+    border: none;
+    outline: none;
+    background-color: var(--form-bg);
+    border-radius: 10px;
+    font-family: var(--font-regular);
+    margin-bottom: 30px;
+    text-transform: capitalize;
+    position: relative;
+  }
+  .icon{
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    
+  }
+  .select_items {
+    position: absolute;
+    background-color: var(--form-bg);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 99;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: var(--font-regular);
+    top: 70%;
+  }
+  
+  .select_item {
+    padding: 20px 10px;
+    cursor: pointer;
+  }
+  
+  .select_item:hover {
+    background-color: #B29CF2;
+  }
+  

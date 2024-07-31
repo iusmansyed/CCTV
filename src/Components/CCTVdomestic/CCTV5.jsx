@@ -1,4 +1,5 @@
 import React from "react";
+import CustomDropdown from "../Dropdown/DropDown";
 
 const CCTV5 = ({ formData, handleChange }) => {
   const categoryOptions = [
@@ -6,20 +7,25 @@ const CCTV5 = ({ formData, handleChange }) => {
     { value: "Indoor", label: "Indoor" },
     { value: "Outdoor", label: "Outdoor" },
   ];
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        handleChange({ target: { name: "capturedImage", value: reader.result } });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   return (
     <>
       <div>
-        <select name="size" value={formData.size} onChange={handleChange}>
-          {categoryOptions.map((option) => (
-            <option
-              style={{ padding: "20px" }}
-              key={option.value}
-              value={option.value}
-            >
-              {option.label}
-            </option>
-          ))}
-        </select>
+        <CustomDropdown
+          options={categoryOptions}
+          name="CameraLocation"
+          value={formData.CameraLocation}
+          onChange={handleChange}
+        />
       </div>
       <div className="col-lg-12">
         <div className="row">
@@ -28,18 +34,43 @@ const CCTV5 = ({ formData, handleChange }) => {
               <label htmlFor="fullName">Height of Installation</label>
               <input
                 type="text"
-                id="numberOfFloor"
-                name="numberOfFloor"
+                id="heightInstall"
+                name="heightInstall"
                 placeholder="Enter a height"
-                value={formData.numberOfFloor}
+                value={formData.heightInstall}
                 onChange={handleChange}
                 required
               />
             </div>
           </div>
           <div className="col-lg-6">
-            <h3>Feature to take a picture</h3>
-            <input type="file" accept="image/*" capture="camera"></input>
+          <div className="phto">
+              <input
+                type="file"
+                accept="image/*"
+                capture="environment"
+                className="takingPhoto"
+                onChange={handleFileChange}
+              />
+              <h3>Feature to take a picture</h3>
+              {formData.capturedImage && (
+                <img src={formData.capturedImage} alt="Captured" style={{ width: "100px", marginTop: "10px" }} />
+              )}
+            </div>
+          </div>
+          <div className="col-lg-12">
+            <div className="inp">
+              <label htmlFor="fullName">Camera Mounting Surfaces</label>
+              <input
+                type="text"
+                id="cameraMounting"
+                name="cameraMounting"
+                placeholder="Enter camera mounting surfaces"
+                value={formData.cameraMounting}
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
         </div>
       </div>

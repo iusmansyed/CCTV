@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Home.module.css";
-import Step1 from "../Components/Forms/Step1";
-import Step2 from "../Components/Forms/Step2";
-import Step3 from "../Components/Forms/Step3";
-import AD1 from "../Components/AlarmDomestic/Step1";
-import AC1 from "../Components/AlarmCommercial/Step1";
-import CC1 from "../Components/CCTVCommercial/Step1";
-import CD1 from "../Components/CCTVdomestic/CCTV1";
-import CD2 from "../Components/CCTVdomestic/CCTV2";
-import CD3 from "../Components/CCTVdomestic/CCTV3";
-import CD4 from "../Components/CCTVdomestic/CCTV4";
-import Sidebar from "../Components/SideBar/Sidebar";
+import Step1 from "../../Components/Forms/Step1";
+import Step2 from "../../Components/Forms/Step2";
+import Step3 from "../../Components/Forms/Step3";
+import AD1 from "../../Components/AlarmDomestic/Step1";
+import AC1 from "../../Components/AlarmCommercial/Step1";
+import CC1 from "../../Components/CCTVCommercial/Step1";
+import CD1 from "../../Components/CCTVdomestic/CCTV1";
+import CD2 from "../../Components/CCTVdomestic/CCTV2";
+import CD3 from "../../Components/CCTVdomestic/CCTV3";
+import CD4 from "../../Components/CCTVdomestic/CCTV4";
+import CD5 from "../../Components/CCTVdomestic/CCTV5";
+import CD6 from "../../Components/CCTVdomestic/CCTV6";
+import Sidebar from "../../Components/SideBar/Sidebar";
+import Sliders from "../Sliders/Sliders";
 
-const defaultSteps = [Step1, Step2, Step3];
-const CCTVDomestic = [CD1, CD2, CD3, CD4];
+// const defaultSteps = [Step1, Step2, Step3];
+const defaultSteps = [CD5, CD6, Sliders];
+const CCTVDomestic = [CD1, CD2, CD3, CD4, CD5, CD6];
 const CCTVCommercial = [CC1];
 const AlarmDomestic = [AD1];
 const AlarmCommercial = [AC1];
@@ -31,6 +35,7 @@ const Home = () => {
     service: "",
     sector: "",
   });
+
   const [CCtvD, setCCtvD] = useState({
     postal: "",
     house: "",
@@ -38,10 +43,16 @@ const Home = () => {
     numberOfFloor: "",
     numberOfEntry: "",
     purpose: "",
-    specificArea:"",
-    RecentSecurity:""
+    specificArea: "",
+    RecentSecurity: "",
+    CameraLocation: "",
+    heightInstall: "",
+    cameraMounting: "",
+    capturedImage: "",
+    PreferredCamera: [],
   });
   console.log(CCtvD, "cawdwada");
+
   // Effect to update steps based on formData changes
   useEffect(() => {
     if (!formData.sector && !formData.service) {
@@ -98,27 +109,37 @@ const Home = () => {
   const prevStep = () => {
     setCurrentStep((prevStep) => Math.max(prevStep - 1, 0));
   };
+  console.log(currentStep);
+  const StepComponent = steps[currentStep];
 
-  const StepComponent = steps[currentStep]; // Get the component based on the index
+  // Get the component based on the index
+  const i = localStorage.getItem("btn")
   return (
     <>
-      <Sidebar />
-      <div className={styles.main}>
+      {currentStep === 2 ? null :
+        <Sidebar />
+      }
+      <div className={currentStep === 2 ? "" : styles.main}>
         <div>
           {StepComponent && (
             <StepComponent
               formData={state === "cctvd" ? CCtvD : formData}
+              setVal={setCCtvD}
               handleChange={state === "cctvd" ? handleChange2 : handleChange}
             />
           )}
-          <div className={styles.btn}>
-            {currentStep > 0 && <button onClick={prevStep}>Previous</button>}
-            {currentStep < steps.length - 1 ? (
-              <button onClick={nextStep}>Next step</button>
-            ) : (
-              <button type="submit">Submit</button>
-            )}
-          </div>
+          {i === "key" ? (
+            null
+          ) : (
+            <div className={styles.btn}>
+              {currentStep > 0 && <button onClick={prevStep}>Previous</button>}
+              {currentStep < steps.length - 1 ? (
+                <button onClick={nextStep}>Next step</button>
+              ) : (
+                <button type="submit">Submit</button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </>

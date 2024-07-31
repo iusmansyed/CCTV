@@ -4,6 +4,7 @@
   gap: 10px;
   margin-bottom: 20px;
 }
+
 input {
   background-color: var(--form-bg);
   border: none;
@@ -12,6 +13,7 @@ input {
   border-radius: 10px;
   font-family: var(--font-regular);
 }
+
 label {
   text-transform: capitalize;
   font-family: var(--font-regular);
@@ -28,9 +30,27 @@ select {
   margin-bottom: 30px;
   text-transform: capitalize;
 }
-.dd {
-  padding: 20px !important;
-}
+
+
 p {
   margin-bottom: 0;
+}
+
+.phto {
+  position: relative;
+  padding-top: 45px;
+  
+}
+.phto h3{
+  font-family: var(--font-semi);
+  font-size: 20px !important;
+}
+.takingPhoto {
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+}
+.btn{
+  float: right;
 }

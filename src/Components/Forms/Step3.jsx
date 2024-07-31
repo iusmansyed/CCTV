@@ -1,4 +1,5 @@
 import React from "react";
+import CustomDropdown from "../Dropdown/DropDown";
 
 const categoryOptions = [
   { value: "", label: "What sector?" },
@@ -8,21 +9,12 @@ const categoryOptions = [
 
 const Step3 = ({ formData, handleChange }) => {
   return (
-    <div className="select-container">
-      <label htmlFor="service">Select Sector:</label>
-      <select
-        id="service"
-        name="sector"
-        value={formData.sector}
-        onChange={handleChange}
-      >
-        {categoryOptions.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-    </div>
+      <CustomDropdown
+       options={categoryOptions}
+       name="sector"
+       value={formData.sector}
+       onChange={handleChange}
+      />
   );
 };
 

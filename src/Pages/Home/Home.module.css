@@ -2,9 +2,11 @@
   margin-left: 350px;
   padding: 140px 200px;
 }
+
 .btn {
   position: relative;
 }
+
 .btn button {
   padding: 10px 50px;
   position: absolute;
@@ -15,4 +17,11 @@
   color: #fff;
   font-family: var(--font-regular);
   border-radius: 12px;
+}
+
+@media (max-width:425px) {
+  .main {
+    margin-left: 0;
+    padding: 10px;
+  }
 }
