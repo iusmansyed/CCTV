@@ -8,26 +8,20 @@ const categoryOptions = [
     { value: "Turret Cameras", label: "Turret Cameras" },
     { value: "Box Cameras", label: "Box Cameras" },
 ];
-const CCTV6 = ({ formData, handleChange, setVal }) => {
-    const [arr, setArr] = useState([]);
-    useEffect(() => {
-        setVal({
-            PreferredCamera: arr
-        });
-        console.log(formData?.PreferredCamera)
-    }, [arr]); // Dependencies
+const CCTV6 = ({ formData, handleChange, next }) => {
+
 
 
     return (
         <>
+         
             <MultiDropDown
                 options={categoryOptions}
                 name="PreferredCamera"
-                setVal={setArr}
-                value={arr}
+                value={formData.PreferredCamera}
                 onChange={handleChange}
+                nextStep={next}
             />
-
         </>
     )
 }

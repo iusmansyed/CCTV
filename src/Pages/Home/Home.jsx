@@ -12,11 +12,14 @@ import CD3 from "../../Components/CCTVdomestic/CCTV3";
 import CD4 from "../../Components/CCTVdomestic/CCTV4";
 import CD5 from "../../Components/CCTVdomestic/CCTV5";
 import CD6 from "../../Components/CCTVdomestic/CCTV6";
+import { connect } from 'react-redux';
+import setCurrentStep from "../../Redux/action" 
 import Sidebar from "../../Components/SideBar/Sidebar";
+
 import Sliders from "../Sliders/Sliders";
 
-// const defaultSteps = [Step1, Step2, Step3];
-const defaultSteps = [CD5, CD6, Sliders];
+const defaultSteps = [Step1, Step2, Step3];
+// const defaultSteps = [CD5, CD6, Sliders];
 const CCTVDomestic = [CD1, CD2, CD3, CD4, CD5, CD6];
 const CCTVCommercial = [CC1];
 const AlarmDomestic = [AD1];
@@ -25,7 +28,7 @@ const AlarmCommercial = [AC1];
 const Home = () => {
   const [state, setState] = useState("");
   const [steps, setSteps] = useState([]); // Initialize with default steps
-  const [currentStep, setCurrentStep] = useState(0); // Step index starts from 0
+  // const [currentStep, setCurrentStep] = useState(0); // Step index starts from 0
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -49,10 +52,9 @@ const Home = () => {
     heightInstall: "",
     cameraMounting: "",
     capturedImage: "",
-    PreferredCamera: [],
+    PreferredCamera: "",
   });
-  console.log(CCtvD, "cawdwada");
-
+  console.log(CCtvD.PreferredCamera,"sadas");
   // Effect to update steps based on formData changes
   useEffect(() => {
     if (!formData.sector && !formData.service) {
@@ -104,6 +106,7 @@ const Home = () => {
   // }, []);
   const nextStep = () => {
     setCurrentStep((prevStep) => Math.min(prevStep + 1, steps.length - 1));
+    console.log("stepss",currentStep);
   };
 
   const prevStep = () => {
@@ -116,16 +119,17 @@ const Home = () => {
   const i = localStorage.getItem("btn")
   return (
     <>
-      {currentStep === 2 ? null :
+      {currentStep === 7 ? null :
         <Sidebar />
       }
-      <div className={currentStep === 2 ? "" : styles.main}>
+      <div className={currentStep === 7 ? "" : styles.main}>
         <div>
           {StepComponent && (
             <StepComponent
               formData={state === "cctvd" ? CCtvD : formData}
               setVal={setCCtvD}
               handleChange={state === "cctvd" ? handleChange2 : handleChange}
+              next={nextStep}
             />
           )}
           {i === "key" ? (
