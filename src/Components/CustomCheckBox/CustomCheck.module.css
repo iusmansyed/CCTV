@@ -1,0 +1,33 @@
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px; /* Adjust label font size as needed */
+    user-select: none;
+}
+
+.checkboxCustom {
+    width: 25px; /* Adjust size as needed */
+    height: 25px; /* Adjust size as needed */
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 5px; /* Optional, for rounded corners */
+    position: relative;
+    margin-right: 10px; /* Space between checkbox and label */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkboxCustom.checked {
+    background-color: #2196F3; /* Change to desired color */
+    border-color: #2196F3; /* Change to desired color */
+}
+
+.checkboxCheckmark {
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}

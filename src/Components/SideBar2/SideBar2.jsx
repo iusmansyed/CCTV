@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import styles from "./SideBar2.module.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { setCountValue, setPreferredCamera } from '../../Redux/action';
 
 const SideBar2 = (props) => {
     const [limit, setLimit] = useState(null);
     const [count, setCount] = useState(0);
     const [message, setMessage] = useState('');
     const { selectedItem, onSelect } = props;
-
+    const { cameraCount } = useSelector((state) => state.setData);
+    console.log(cameraCount);
     useEffect(() => {
         if (selectedItem) {
             setLimit(selectedItem.limit);
@@ -14,13 +17,14 @@ const SideBar2 = (props) => {
             setMessage(''); // Reset message when selectedItem changes
         }
     }, [selectedItem]);
-
+    let dispatch = useDispatch()
     const handleSelectClick = () => {
         if (selectedItem) {
             if (count < 4) {
                 onSelect(selectedItem);
                 setLimit(selectedItem.limit);
                 setCount(prevCount => prevCount + 1);
+                dispatch(setCountValue(count + 1))
                 setMessage('');
             } else {
                 setMessage('You cannot select more then 4 times');

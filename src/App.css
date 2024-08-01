@@ -39,18 +39,64 @@ p {
 .phto {
   position: relative;
   padding-top: 45px;
-  
+
 }
-.phto h3{
+
+.phto h3 {
   font-family: var(--font-semi);
   font-size: 20px !important;
 }
+
 .takingPhoto {
   opacity: 0;
   cursor: pointer;
   position: absolute;
   top: 30px;
 }
-.btn{
+
+.btn {
   float: right;
+}
+
+.cross {
+  display: flex;
+  margin-top: 10px;
+  gap: 5px;
+}
+
+.remove {
+  display: flex;
+  border: 1px solid #836ACB;
+  padding: 10px;
+  border-radius: 50px;
+}
+
+.check {
+  margin-top: 40px;
+
+}
+
+input[type=checkbox] {
+  margin-right: 10px;
+  transform: scale(2);
+  padding: 10px;
+}
+input[type=radio] {
+  margin-right: 10px;
+  transform: scale(2);
+  padding: 10px;
+  margin-top: 20px;
+}
+.hea{
+  font-family: var(--font-regular);
+}
+.man {
+  position: relative;
+}
+
+.back {
+  position: absolute;
+  top: -100px;
+  left: -150px;
+  font-size: 50px;
 }

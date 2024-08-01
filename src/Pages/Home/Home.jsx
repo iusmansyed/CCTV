@@ -12,20 +12,24 @@ import CD3 from "../../Components/CCTVdomestic/CCTV3";
 import CD4 from "../../Components/CCTVdomestic/CCTV4";
 import CD5 from "../../Components/CCTVdomestic/CCTV5";
 import CD6 from "../../Components/CCTVdomestic/CCTV6";
-import { connect } from 'react-redux';
-import setCurrentStep from "../../Redux/action" 
+import CD7 from "../../Components/CCTVdomestic/CCTV7";
+import CD8 from "../../Components/CCTVdomestic/CCTV8";
+import { setCurrentStep, setPreferredCamera } from "../../Redux/action"
 import Sidebar from "../../Components/SideBar/Sidebar";
 
 import Sliders from "../Sliders/Sliders";
+import { useDispatch, useSelector } from "react-redux";
 
-const defaultSteps = [Step1, Step2, Step3];
-// const defaultSteps = [CD5, CD6, Sliders];
-const CCTVDomestic = [CD1, CD2, CD3, CD4, CD5, CD6];
+// const defaultSteps = [Step1, Step2, Step3];
+const defaultSteps = [CD5, CD6, Sliders,CD7,CD8];
+const CCTVDomestic = [CD1, CD2, CD3, CD4, CD5, CD6, Sliders,];
 const CCTVCommercial = [CC1];
 const AlarmDomestic = [AD1];
 const AlarmCommercial = [AC1];
 
 const Home = () => {
+  const dispatch = useDispatch()
+  const { currentStep } = useSelector(state => state.currentStep)
   const [state, setState] = useState("");
   const [steps, setSteps] = useState([]); // Initialize with default steps
   // const [currentStep, setCurrentStep] = useState(0); // Step index starts from 0
@@ -53,8 +57,26 @@ const Home = () => {
     cameraMounting: "",
     capturedImage: "",
     PreferredCamera: "",
+    Resolution: "",
+    nightVision:"",
+    motionDetection:"",
+    audioRecording:"",
+    RemoteAccessRequired:"",
+    PowerSourceAvailability:"",
+    PowerSourceAvailability:"",
+    DVR:"",
+    RouterLocation:"",
+    visible:"",
+    Concealed:"",
+    Wireless:"",
+    Installed:"",
+    WirelessInter:""
   });
-  console.log(CCtvD.PreferredCamera,"sadas");
+  console.log(formData.nightVision);
+  const {PreferredCamera:preferredCamera} = useSelector((state) => state.setData);
+  
+  // dispatch(setPreferredCamera(CCtvD.PreferredCamera));
+
   // Effect to update steps based on formData changes
   useEffect(() => {
     if (!formData.sector && !formData.service) {
@@ -63,25 +85,24 @@ const Home = () => {
     if (formData.service === "CCTV" && formData.sector === "Domestic") {
       setSteps(CCTVDomestic);
       setState("cctvd");
-      setCurrentStep(0);
-      // console.log("CCTVDomestic =====>", CCTVDomestic);
+      dispatch(setCurrentStep(0))
     } else if (
       formData.service === "CCTV" &&
       formData.sector === "Commercial"
     ) {
       setSteps(CCTVCommercial);
-      setCurrentStep(0);
+      dispatch(setCurrentStep(0))
     } else if (formData.service === "Alarm" && formData.sector === "Domestic") {
       setSteps(AlarmDomestic);
-      setCurrentStep(0);
+      dispatch(setCurrentStep(0))
     } else if (
       formData.service === "Alarm" &&
       formData.sector === "Commercial"
     ) {
       setSteps(AlarmCommercial);
-      setCurrentStep(0);
+      dispatch(setCurrentStep(0))
     }
-  }, [formData.service, formData.sector, steps]);
+  }, [formData.service, formData.sector, steps, dispatch, setCurrentStep]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -98,31 +119,23 @@ const Home = () => {
     }));
   };
 
-  // useEffect(() => {
-
-  //   return () => {
-
-  //   };
-  // }, []);
   const nextStep = () => {
-    setCurrentStep((prevStep) => Math.min(prevStep + 1, steps.length - 1));
-    console.log("stepss",currentStep);
+    dispatch(setCurrentStep(Math.min(currentStep + 1, steps.length - 1)))
   };
 
   const prevStep = () => {
-    setCurrentStep((prevStep) => Math.max(prevStep - 1, 0));
+    dispatch(setCurrentStep(Math.max(currentStep - 1, 0)));
   };
-  console.log(currentStep);
   const StepComponent = steps[currentStep];
 
   // Get the component based on the index
   const i = localStorage.getItem("btn")
   return (
     <>
-      {currentStep === 7 ? null :
+      {currentStep === 2 ? null :
         <Sidebar />
       }
-      <div className={currentStep === 7 ? "" : styles.main}>
+      <div className={currentStep === 2 ? "" : styles.main}>
         <div>
           {StepComponent && (
             <StepComponent
@@ -132,18 +145,14 @@ const Home = () => {
               next={nextStep}
             />
           )}
-          {i === "key" ? (
-            null
-          ) : (
-            <div className={styles.btn}>
-              {currentStep > 0 && <button onClick={prevStep}>Previous</button>}
-              {currentStep < steps.length - 1 ? (
-                <button onClick={nextStep}>Next step</button>
-              ) : (
-                <button type="submit">Submit</button>
-              )}
-            </div>
-          )}
+          <div className={styles.btn}>
+            {currentStep > 0 && <button onClick={prevStep}>Previous</button>}
+            {currentStep < steps.length - 1 ? (
+              <button onClick={nextStep}>Next step</button>
+            ) : (
+              <button type="submit">Submit</button>
+            )}
+          </div>
         </div>
       </div>
     </>

@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import styles from './MultiDropDown.module.css';
 import { FaChevronDown } from "react-icons/fa";
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentStep, setPreferredCamera } from '../../Redux/action';
 const MultiDropDown = ({ options, value, onChange, name, next }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
+    const dispatch = useDispatch()
+    const { PreferredCamera: preferredCamera } = useSelector((state) => state.setData);
     const toggleDropdown = () => setIsOpen(!isOpen);
-
+    const { currentStep } = useSelector(state => state.currentStep)
+    const [isOpen, setIsOpen] = useState(false);
     const handleOptionClick = (option) => {
         onChange({ target: { value: option.value, name } });
-        // (prevStep) => Math.min(prevStep + 1, steps.length - 1)
-        console.log("hello world");
-        next();
+        dispatch(setPreferredCamera([...preferredCamera, option.value]))
         setIsOpen(false);
     };
 

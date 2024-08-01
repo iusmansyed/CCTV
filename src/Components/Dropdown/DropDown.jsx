@@ -10,12 +10,14 @@ const CustomDropdown = ({ options, value, onChange, name }) => {
     onChange({ target: { value: option.value, name } });
     setIsOpen(false);
   };
-
+  const selectedOption = options.find(option => option.value === value);
+  const displayLabel = selectedOption ? selectedOption.label : options[0].label;
   return (
     <div className={styles.custom_select}>
       <div className={styles.select_selected} onClick={toggleDropdown}>
-        {options.find(option => option.value === value)?.label || 'Select Sector'}
+        {displayLabel}
         <div className={styles.icon}>
+          {options.label}
           <FaChevronDown fontSize={"20px"} />
         </div>
       </div>
