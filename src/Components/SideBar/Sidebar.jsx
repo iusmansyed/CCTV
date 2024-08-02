@@ -1,12 +1,18 @@
 import React from "react";
 import styles from "./Sidebar.module.css";
-const Sidebar = () => {
+import Lottie from "lottie-react";
+import Check from "../../assets/Images/complete.json"
+import { FaCheck } from "react-icons/fa";
+const Sidebar = ({ side1 }) => {
   return (
     <>
       <section className={styles.sideBar}>
         <ul>
           <li>
-            <div className={styles.circle}>1</div>
+            <div className={styles.circle}>
+              {side1 ? <p><FaCheck color="green" /></p> : "1"}
+              
+            </div>
             <p>personal information</p>
           </li>
           <li>

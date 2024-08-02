@@ -109,3 +109,9 @@ input[type=radio] {
   left: -150px;
   font-size: 50px;
 }
+@media (max-width:786px) {
+  label {
+    font-size: 16px;
+    
+  }
+}

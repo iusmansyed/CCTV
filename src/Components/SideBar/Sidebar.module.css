@@ -9,10 +9,12 @@
   display: flex;
   padding: 140px 50px;
 }
+
 .sideBar ul {
   list-style: none;
   padding-left: 0;
 }
+
 .sideBar ul li {
   display: flex;
   gap: 20px;
@@ -23,6 +25,7 @@
   font-family: var(--font-regular);
   text-transform: capitalize;
 }
+
 .circle {
   border: 2px solid #6c54b3;
   width: 30px;
@@ -36,8 +39,26 @@
   color: #6c54b3;
   font-size: 25px;
 }
+
+@media (max-width:768px) {
+  .sideBar {
+    width: 260px;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: var(--sideBar-bg);
+    display: flex;
+    padding: 140px 50px 50px 20px;
+  }
+
+  .sideBar ul li {
+    gap: 10px;
+  }
+}
+
 @media (max-width:425px) {
-  .sideBar{
+  .sideBar {
     display: none;
   }
 }

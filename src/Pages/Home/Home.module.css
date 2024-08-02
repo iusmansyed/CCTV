@@ -1,6 +1,7 @@
 .main {
   margin-left: 350px;
   padding: 140px 200px;
+  overflow-x: hidden;
 }
 
 .btn {
@@ -18,7 +19,19 @@
   font-family: var(--font-regular);
   border-radius: 12px;
 }
-
+@media (max-width:1024px) {
+  .main {
+    margin-left: 350px;
+    padding: 140px 60px;
+  }
+}
+@media (max-width:786px) {
+  .main{
+    margin-left: 260px;
+    padding: 140px 20px;
+    min-height: 100vh;
+  }
+}
 @media (max-width:425px) {
   .main {
     margin-left: 0;

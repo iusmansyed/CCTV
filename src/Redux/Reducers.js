@@ -16,7 +16,7 @@ const stepReducer = (state = initialStepState, action) => {
 const initialDataState = {
   data: null,
   PreferredCamera: [],
-  cameraCount: '',
+  cameraCount: 0,
   // add more properties as needed
 };
 const dataReducer = (state = initialDataState, action) => {

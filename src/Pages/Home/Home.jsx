@@ -23,10 +23,11 @@ import ThankYou from "../../Pages/ThankYou/ThankYou";
 
 import Sliders from "../Sliders/Sliders";
 import { useDispatch, useSelector } from "react-redux";
+import Topbar from "../../Components/topBar/Topbar";
 
 const defaultSteps = [Step1, Step2, Step3];
 // const defaultSteps = [CD5, CD6, Sliders, ];
-const CCTVDomestic = [CD1, CD2, CD3, CD4, CD5, CD6, Sliders,CD7, CD8, CD9, CD10, CD11, ThankYou];
+const CCTVDomestic = [CD1, CD2, CD3, CD4, CD5, CD6, Sliders, CD7, CD8, CD9, CD10, CD11, ThankYou];
 const CCTVCommercial = [CC1];
 const AlarmDomestic = [AD1];
 const AlarmCommercial = [AC1];
@@ -35,8 +36,32 @@ const Home = () => {
   const dispatch = useDispatch()
   const { currentStep } = useSelector(state => state.currentStep)
   const [state, setState] = useState("");
+  const [sideState, setSideState] = useState(false);
+  const [sideState1, setSideState1] = useState(false);
+  const [sideState2, setSideState2] = useState(false);
+  const [sideState3, setSideState3] = useState(false);
+  const [sideState4, setSideState4] = useState(false);
+  const [sideState5, setSideState5] = useState(false);
   const [steps, setSteps] = useState([]); // Initialize with default steps
-  // const [currentStep, setCurrentStep] = useState(0); // Step index starts from 0
+  useEffect(() => {
+    if (currentStep === 3) {
+      setSideState(true)
+    }
+    if (currentStep === 6) {
+      setSideState(true)
+    }
+    if (currentStep === 9) {
+      setSideState(true)
+    }
+    if (currentStep === 10) {
+      setSideState(true)
+    }
+    if (currentStep === 6) {
+      setSideState(true)
+    }
+
+  }, [currentStep])
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -94,7 +119,7 @@ const Home = () => {
   useEffect(() => {
     dispatch({ type: SET_ALL_VALUE, payload: formData });
   }, [formData])
-  
+
   useEffect(() => {
     if (!formData.sector && !formData.service) {
       setSteps(defaultSteps);
@@ -145,14 +170,15 @@ const Home = () => {
     dispatch(setCurrentStep(Math.max(currentStep - 1, 0)));
   };
   const StepComponent = steps[currentStep];
-console.log(currentStep);
-  // Get the component based on the index
+
+  console.log(currentStep);
   const isLastStep = currentStep === steps.length - 1;
   return (
     <>
       {currentStep === 6 ? null :
-        <Sidebar />
+        <Sidebar side1={sideState} />
       }
+      <Topbar side1={sideState}/>
       <div className={currentStep === 6 ? "" : styles.main}>
         <div>
           {StepComponent && (

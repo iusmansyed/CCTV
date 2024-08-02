@@ -5,11 +5,13 @@ import Sticker from "../../assets/Images/complete.json"
 import { useSelector } from 'react-redux'
 const ThankYou = ({ formData }) => {
     const { forms } = useSelector((state) => state.formData);
+    const { cameraCount } = useSelector((state) => state.setData);
 
     console.log("1st form", forms);
     console.log("2nd form", formData);
 
     const content = `
+
   Address: ${forms.address}
   Contact: ${forms.contact}
   Email: ${forms.email}
@@ -31,6 +33,7 @@ const ThankYou = ({ formData }) => {
   Recent Security: ${formData.RecentSecurity}
   Remote Access Required: ${formData.RemoteAccessRequired}
   Resolution: ${formData.Resolution}
+  Numbers Of Camera : ${cameraCount}
   Router Location: ${formData.RouterLocation}
   SMS: ${formData.SMS}
   Security Lighting: ${formData.SecurityLighting}

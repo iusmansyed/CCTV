@@ -1,0 +1,44 @@
+.tops {
+    padding: 50px 0 20px 0;
+}
+
+.circle {
+    border: 2px solid #B3ACFF;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    font-family: var(--font-regular);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle1 {
+    border: 2px solid #B3ACFF;
+    width: min-content;
+    padding: 10px 18px;
+    height: min-content;
+    border-radius: 50%;
+    position: relative;
+}
+
+.circle::before {
+    content: "";
+    position: absolute;
+    border: 1px solid #B3ACFF;
+    top: 19px;
+    right: -40px;
+    width: 85%;
+}
+
+.circle:nth-child(6)::before {
+    border: none;
+}
+
+.lebel {
+    font-size: 12px;
+    text-align: center;
+    line-height: 13px;
+}
