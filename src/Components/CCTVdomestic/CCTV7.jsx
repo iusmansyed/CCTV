@@ -43,8 +43,8 @@ const CCTV7 = ({ formData, handleChange }) => {
                         <div className="col-lg-6">
                             <CustomDropdown
                                 options={categoryOptions2}
-                                name="Resolution"
-                                value={formData.Resolution}
+                                name="storage"
+                                value={formData.storage}
                                 onChange={handleChange}
                             />
                         </div>

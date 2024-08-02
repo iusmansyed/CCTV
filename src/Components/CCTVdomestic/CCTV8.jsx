@@ -23,8 +23,8 @@ const CCTV8 = ({ formData, handleChange }) => {
                             <input
                                 type="text"
                                 id="RouterLocation"
-                                name="RouterLocation"
                                 placeholder=" Enter router location"
+                                name="RouterLocation"
                                 value={formData.RouterLocation}
                                 onChange={handleChange}
                                 required
@@ -36,7 +36,7 @@ const CCTV8 = ({ formData, handleChange }) => {
                             </p>
                             <label htmlFor="">
                                 <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="visible"
                                     checked={formData.visible}
                                     onChange={(e) => handleChange({
@@ -52,9 +52,10 @@ const CCTV8 = ({ formData, handleChange }) => {
                         <div>
                             <label htmlFor="">
                                 <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="Concealed"
-                                    checked={formData.Concealed}
+                                    value={true}
+                                    checked={formData.Concealed === true}
                                     onChange={(e) => handleChange({
                                         target: {
                                             name: e.target.name,
@@ -69,9 +70,10 @@ const CCTV8 = ({ formData, handleChange }) => {
 
                             <label htmlFor="">
                                 <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="Wireless"
-                                    checked={formData.Wireless}
+                                    checked={formData.Wireless === true}
+                                    value={false}
                                     onChange={(e) => handleChange({
                                         target: {
                                             name: e.target.name,
@@ -88,9 +90,11 @@ const CCTV8 = ({ formData, handleChange }) => {
                             </p>
                             <label htmlFor="">
                                 <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="Installed"
-                                    checked={formData.Installed}
+                                    checked={formData.Installed === true}
+                                    value={false}
+
                                     onChange={(e) => handleChange({
                                         target: {
                                             name: e.target.name,
@@ -104,7 +108,7 @@ const CCTV8 = ({ formData, handleChange }) => {
                         <div>
                             <label htmlFor="">
                                 <input
-                                    type="radio"
+                                    type="checkbox"
                                     name="WirelessInter"
                                     checked={formData.WirelessInter}
                                     onChange={(e) => handleChange({

@@ -17,6 +17,10 @@ input {
 label {
   text-transform: capitalize;
   font-family: var(--font-regular);
+  color: #000;
+  font-weight: 600;
+  font-size: 20px;
+  
 }
 
 select {
@@ -80,6 +84,7 @@ input[type=checkbox] {
   margin-right: 10px;
   transform: scale(2);
   padding: 10px;
+  margin-top: 10px;
 }
 input[type=radio] {
   margin-right: 10px;
@@ -88,7 +93,11 @@ input[type=radio] {
   margin-top: 20px;
 }
 .hea{
+  text-transform: capitalize;
   font-family: var(--font-regular);
+  color: #000;
+  font-weight: 600;
+  font-size: 20px;
 }
 .man {
   position: relative;

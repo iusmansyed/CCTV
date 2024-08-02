@@ -14,15 +14,19 @@ import CD5 from "../../Components/CCTVdomestic/CCTV5";
 import CD6 from "../../Components/CCTVdomestic/CCTV6";
 import CD7 from "../../Components/CCTVdomestic/CCTV7";
 import CD8 from "../../Components/CCTVdomestic/CCTV8";
-import { setCurrentStep, setPreferredCamera } from "../../Redux/action"
+import CD9 from "../../Components/CCTVdomestic/CCTV9";
+import CD10 from "../../Components/CCTVdomestic/CCTV10";
+import CD11 from "../../Components/CCTVdomestic/CCTV11";
+import { allValue, SET_ALL_VALUE, setCurrentStep, setPreferredCamera } from "../../Redux/action"
 import Sidebar from "../../Components/SideBar/Sidebar";
+import ThankYou from "../../Pages/ThankYou/ThankYou";
 
 import Sliders from "../Sliders/Sliders";
 import { useDispatch, useSelector } from "react-redux";
 
-// const defaultSteps = [Step1, Step2, Step3];
-const defaultSteps = [CD5, CD6, Sliders,CD7,CD8];
-const CCTVDomestic = [CD1, CD2, CD3, CD4, CD5, CD6, Sliders,];
+const defaultSteps = [Step1, Step2, Step3];
+// const defaultSteps = [CD5, CD6, Sliders, ];
+const CCTVDomestic = [CD1, CD2, CD3, CD4, CD5, CD6, Sliders,CD7, CD8, CD9, CD10, CD11, ThankYou];
 const CCTVCommercial = [CC1];
 const AlarmDomestic = [AD1];
 const AlarmCommercial = [AC1];
@@ -58,26 +62,39 @@ const Home = () => {
     capturedImage: "",
     PreferredCamera: "",
     Resolution: "",
-    nightVision:"",
-    motionDetection:"",
-    audioRecording:"",
-    RemoteAccessRequired:"",
-    PowerSourceAvailability:"",
-    PowerSourceAvailability:"",
-    DVR:"",
-    RouterLocation:"",
-    visible:"",
-    Concealed:"",
-    Wireless:"",
-    Installed:"",
-    WirelessInter:""
+    nightVision: "",
+    storage: "",
+    motionDetection: "",
+    audioRecording: "",
+    RemoteAccessRequired: "",
+    PowerSourceAvailability: "",
+    PowerSourceAvailability: "",
+    DVR: "",
+    RouterLocation: "",
+    visible: "",
+    Concealed: "",
+    Wireless: "",
+    Installed: "",
+    WirelessInter: "",
+    AccessInstall: "",
+    currentSecuritySystem: "",
+    date: "",
+    privacy: "",
+    specificBrand: "",
+    suggested: "",
+    SecurityLighting: "",
+    fireAlarm: "",
+    AdditionalSecurity: "",
+    Email: "",
+    Phone: "",
+    SMS: ""
+    // anyExisting:""
   });
-  console.log(formData.nightVision);
-  const {PreferredCamera:preferredCamera} = useSelector((state) => state.setData);
+  // console.log(forms,"aal we have one this");
+  useEffect(() => {
+    dispatch({ type: SET_ALL_VALUE, payload: formData });
+  }, [formData])
   
-  // dispatch(setPreferredCamera(CCtvD.PreferredCamera));
-
-  // Effect to update steps based on formData changes
   useEffect(() => {
     if (!formData.sector && !formData.service) {
       setSteps(defaultSteps);
@@ -104,6 +121,7 @@ const Home = () => {
     }
   }, [formData.service, formData.sector, steps, dispatch, setCurrentStep]);
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
@@ -127,15 +145,15 @@ const Home = () => {
     dispatch(setCurrentStep(Math.max(currentStep - 1, 0)));
   };
   const StepComponent = steps[currentStep];
-
+console.log(currentStep);
   // Get the component based on the index
-  const i = localStorage.getItem("btn")
+  const isLastStep = currentStep === steps.length - 1;
   return (
     <>
-      {currentStep === 2 ? null :
+      {currentStep === 6 ? null :
         <Sidebar />
       }
-      <div className={currentStep === 2 ? "" : styles.main}>
+      <div className={currentStep === 6 ? "" : styles.main}>
         <div>
           {StepComponent && (
             <StepComponent
@@ -145,7 +163,7 @@ const Home = () => {
               next={nextStep}
             />
           )}
-          <div className={styles.btn}>
+          <div className={styles.btn} style={{ display: isLastStep ? "none" : "block" }}>
             {currentStep > 0 && <button onClick={prevStep}>Previous</button>}
             {currentStep < steps.length - 1 ? (
               <button onClick={nextStep}>Next step</button>

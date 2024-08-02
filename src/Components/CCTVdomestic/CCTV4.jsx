@@ -1,6 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 
 const CCTV4 = ({ formData, handleChange }) => {
+  const { data: forms } = useSelector((state) => state.formData);
+
   return (
     <div>
       <div className="col-lg-12">
