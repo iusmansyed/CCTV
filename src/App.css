@@ -57,7 +57,27 @@ p {
   position: absolute;
   top: 30px;
 }
-
+.tooked{
+  position: relative;
+}
+.takingPhoto2 {
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  width: 100%;
+}
+.inert{
+  background-color:var(--form-bg);
+  border: none;
+  outline: none;
+  padding: 20px 10px;
+  border-radius: 10px;
+  font-family: var(--font-regular);
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
 .btn {
   float: right;
 }

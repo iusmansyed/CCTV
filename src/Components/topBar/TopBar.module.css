@@ -1,5 +1,6 @@
 .tops {
     padding: 50px 0 20px 0;
+    display: none;
 }
 
 .circle {
@@ -29,16 +30,19 @@
     position: absolute;
     border: 1px solid #B3ACFF;
     top: 19px;
-    right: -40px;
+    right: -60px;
     width: 85%;
 }
 
-.circle:nth-child(6)::before {
-    border: none;
-}
+
 
 .lebel {
     font-size: 12px;
     text-align: center;
     line-height: 13px;
+}
+@media (max-width:425px) {
+    .tops{
+        display: block;
+    }
 }

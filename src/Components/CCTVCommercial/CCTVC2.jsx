@@ -1,7 +1,7 @@
-import React from "react";
-import CustomDropdown from "../Dropdown/DropDown";
+import React from 'react'
+import CustomDropdown from '../Dropdown/DropDown';
 
-const CCTV2 = ({ formData, handleChange }) => {
+const CCTVC2 = ({ formData, handleChange }) => {
   const categoryOptions = [
     { value: "", label: "size of property" },
     { value: "'1-2 bedrooms", label: "'1-2 bedrooms" },
@@ -11,7 +11,6 @@ const CCTV2 = ({ formData, handleChange }) => {
   return (
     <>
       <div>
-        
         <CustomDropdown
           options={categoryOptions}
           name="size"
@@ -35,24 +34,10 @@ const CCTV2 = ({ formData, handleChange }) => {
               />
             </div>
           </div>
-          {/* <div className="col-lg-6">
-            <div className="inp">
-              <label htmlFor="fullName">Number of Entry points</label>
-              <input
-                type="text"
-                id="numberOfEntry"
-                name="numberOfEntry"
-                placeholder="Enter a Number"
-                value={formData.numberOfEntry}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </div> */}
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default CCTV2;
+export default CCTVC2

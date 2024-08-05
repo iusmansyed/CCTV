@@ -1,11 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentStep } from '../../Redux/action';
-
-const CCTV4 = ({ formData, handleChange }) => {
- let dispatch = useDispatch();
- const { currentStep } = useSelector(state => state.currentStep)
-  const Skip = () =>{
+const CCTVC4 = ({ formData, handleChange }) => {
+  let dispatch = useDispatch();
+  const { currentStep } = useSelector(state => state.currentStep)
+  const Skip = () => {
     dispatch(setCurrentStep(Math.min(currentStep + 1)))
   }
   return (
@@ -14,7 +13,7 @@ const CCTV4 = ({ formData, handleChange }) => {
 
         <div className="col-lg-12">
           <div style={{ float: "right", marginTop: "-30px" }}>
-            <h3 style={{ color: "#962CE9",cursor:"pointer" }} onClick={Skip}>Skip</h3>
+            <h3 style={{ color: "#962CE9", cursor: "pointer" }} onClick={Skip}>Skip</h3>
           </div>
           <div className="inp">
             <label htmlFor="fullName">Specific Areas of Concern</label>
@@ -45,7 +44,7 @@ const CCTV4 = ({ formData, handleChange }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CCTV4
+export default CCTVC4

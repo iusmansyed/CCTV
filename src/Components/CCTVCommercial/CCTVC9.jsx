@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CCTV9 = ({ formData, handleChange }) => {
+const CCTVC9 = ({ formData, handleChange }) => {
     return (
         <div className='container'>
             <div className="row">
@@ -27,4 +27,4 @@ const CCTV9 = ({ formData, handleChange }) => {
     )
 }
 
-export default CCTV9
+export default CCTVC9

@@ -1,5 +1,6 @@
 import React from "react";
 import CustomDropdown from "../Dropdown/DropDown";
+import { FaCamera } from "react-icons/fa";
 
 const CCTV5 = ({ formData, handleChange }) => {
   const categoryOptions = [
@@ -52,7 +53,7 @@ const CCTV5 = ({ formData, handleChange }) => {
                 className="takingPhoto"
                 onChange={handleFileChange}
               />
-              <h3>Feature to take a picture</h3>
+              <h3><FaCamera color="#B29CF2"/> Feature to take a picture</h3>
               {formData.capturedImage && (
                 <img src={formData.capturedImage} alt="Captured" style={{ width: "100px", marginTop: "10px" }} />
               )}
@@ -67,6 +68,20 @@ const CCTV5 = ({ formData, handleChange }) => {
                 name="cameraMounting"
                 placeholder="Enter camera mounting surfaces"
                 value={formData.cameraMounting}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+          <div className="col-lg-6">
+            <div className="inp">
+              <label htmlFor="fullName">Installation description</label>
+              <input
+                type="text"
+                id="InstallationDesc"
+                name="InstallationDesc"
+                placeholder="Enter description"
+                value={formData.InstallationDesc}
                 onChange={handleChange}
                 required
               />

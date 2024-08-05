@@ -11,13 +11,31 @@ const CCTV3 = ({ formData, handleChange }) => {
     { value: "Monitoring elderly family members", label: "Monitoring elderly family members" },
   ];
   return (
-    <div>
-      <CustomDropdown
-       options={categoryOptions}
-       name="purpose"
-       value={formData.purpose}
-       onChange={handleChange}
-      />
+    <div className='container'>
+      <div className="row">
+        <div className="col-lg-12">
+          <CustomDropdown
+            options={categoryOptions}
+            name="purpose"
+            value={formData.purpose}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col-lg-6">
+            <div className="inp">
+              <label htmlFor="fullName">Others</label>
+              <input
+                type="text"
+                id="purpose"
+                name="purpose"
+                placeholder="Others.."
+                value={formData.purpose}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+      </div>
     </div>
   );
 };

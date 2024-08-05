@@ -4,6 +4,8 @@
     height: 100vh;
     background-color: var(--sideBar-bg);
     padding: 45px 0px;
+    left: 0;
+    top: 0;
 }
 
 .head {

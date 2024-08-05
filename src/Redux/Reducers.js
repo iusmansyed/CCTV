@@ -16,7 +16,7 @@ const stepReducer = (state = initialStepState, action) => {
 const initialDataState = {
   data: null,
   PreferredCamera: [],
-  cameraCount: 0,
+  cameraSelection: {} 
   // add more properties as needed
 };
 const dataReducer = (state = initialDataState, action) => {
@@ -31,11 +31,17 @@ const dataReducer = (state = initialDataState, action) => {
         ...state,
         data: action.payload,
       };
-    case SET_COUNT_VALUE:
-      return {
-        ...state,
-        cameraCount: action.payload,
-      };
+      case SET_COUNT_VALUE:
+        const { title, category, updatedCount } = action.payload;
+        return {
+          ...state,
+          cameraSelection: {
+            ...state.cameraSelection,
+            title,
+            category,
+            updatedCount,
+          }
+        };
     // add more cases as needed
     default:
       return state;

@@ -14,10 +14,11 @@ export const setData = (data) => ({
   payload: data,
 });
 
-export const setCountValue = (value) => ({
+export const setCountValue = (title, category, updatedCount) => ({
   type: SET_COUNT_VALUE,
-  payload: value,
+  payload: { title, category, updatedCount },
 });
+
 export const setPreferredCamera = (camera) => ({
   type: SET_PREFERRED_CAMERA,
   payload: camera,

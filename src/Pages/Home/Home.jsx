@@ -3,9 +3,23 @@ import styles from "./Home.module.css";
 import Step1 from "../../Components/Forms/Step1";
 import Step2 from "../../Components/Forms/Step2";
 import Step3 from "../../Components/Forms/Step3";
-import AD1 from "../../Components/AlarmDomestic/Step1";
+import AD1 from "../../Components/AlarmDomestic/AlarmD1";
+import AD2 from "../../Components/AlarmDomestic/AlarmD2";
+import AD3 from "../../Components/AlarmDomestic/AlarmD3";
+import AD4 from "../../Components/AlarmDomestic/AlarmD4";
+import AD5 from "../../Components/AlarmDomestic/AlarmD5";
 import AC1 from "../../Components/AlarmCommercial/Step1";
-import CC1 from "../../Components/CCTVCommercial/Step1";
+import CC1 from "../../Components/CCTVCommercial/CCTVC1";
+import CC2 from "../../Components/CCTVCommercial/CCTVC2";
+import CC3 from "../../Components/CCTVCommercial/CCTVC3";
+import CC4 from "../../Components/CCTVCommercial/CCTVC4";
+import CC5 from "../../Components/CCTVCommercial/CCTVC5";
+import CC6 from "../../Components/CCTVCommercial/CCTVC6";
+import CC7 from "../../Components/CCTVCommercial/CCTVC7";
+import CC8 from "../../Components/CCTVCommercial/CCTVC8";
+import CC9 from "../../Components/CCTVCommercial/CCTVC9";
+import CC10 from "../../Components/CCTVCommercial/CCTVC10";
+import CC11 from "../../Components/CCTVCommercial/CCTVC11";
 import CD1 from "../../Components/CCTVdomestic/CCTV1";
 import CD2 from "../../Components/CCTVdomestic/CCTV2";
 import CD3 from "../../Components/CCTVdomestic/CCTV3";
@@ -26,10 +40,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Topbar from "../../Components/topBar/Topbar";
 
 const defaultSteps = [Step1, Step2, Step3];
-// const defaultSteps = [CD5, CD6, Sliders, ];
+// const defaultSteps = [CD6, Sliders];
 const CCTVDomestic = [CD1, CD2, CD3, CD4, CD5, CD6, Sliders, CD7, CD8, CD9, CD10, CD11, ThankYou];
-const CCTVCommercial = [CC1];
-const AlarmDomestic = [AD1];
+const CCTVCommercial = [CC1, CC2, CC3, CC4, CC5, CC6, Sliders, CC7, CC8, CC9, CC10, CC11];
+const AlarmDomestic = [AD1, AD2, AD3, AD4, AD5];
 const AlarmCommercial = [AC1];
 
 const Home = () => {
@@ -109,13 +123,69 @@ const Home = () => {
     suggested: "",
     SecurityLighting: "",
     fireAlarm: "",
+    SmartLocks: "",
+    system: "",
     AdditionalSecurity: "",
     Email: "",
     Phone: "",
-    SMS: ""
-    // anyExisting:""
+    SMS: "",
+    InstallationDesc: "",
+    anyExisting: ""
   });
-  // console.log(forms,"aal we have one this");
+  const [CCtvC, setCCtvC] = useState({
+    selectSector: "",
+    size: "",
+    purpose: "",
+    specificArea: "",
+    RecentSecurity: "",
+    CameraLocation: "",
+    heightInstall: "",
+    capturedImage: "",
+    cameraMounting: "",
+    InstallationDesc: "",
+    PreferredCamera: "",
+    Resolution: "",
+    storage: "",
+    nightVision: "",
+    motionDetection: "",
+    audioRecording: "",
+    RemoteAccessRequired: "",
+    PowerSourceAvailability: "",
+    DVR: "",
+    RouterLocation: "",
+    visible: "",
+    Concealed: "",
+    Wireless: "",
+    Installed: "",
+    WirelessInter: "",
+    date: "",
+    privacy: "",
+    specificBrand: "",
+    suggested: "",
+    SecurityLighting: "",
+    fireAlarm: "",
+    SmartLocks: "",
+    system: "",
+    heightInstall: "",
+    Email: "",
+    Phone: "",
+    SMS: "",
+  });
+  const [alarmD, setAlarmD] =useState ({
+    house:"",
+    size:"",
+    numberOfFloor:"",
+    numberOfEntry:"",
+    ControlLocation:"",
+    localPower:"",
+    DescriptionConnection:"",
+    description:"",
+    approxDistance:"",
+    Sensors:"",
+    Doorcontacts:"",
+    
+  })
+
   useEffect(() => {
     dispatch({ type: SET_ALL_VALUE, payload: formData });
   }, [formData])
@@ -133,9 +203,12 @@ const Home = () => {
       formData.sector === "Commercial"
     ) {
       setSteps(CCTVCommercial);
+      setState("cctvc");
       dispatch(setCurrentStep(0))
     } else if (formData.service === "Alarm" && formData.sector === "Domestic") {
       setSteps(AlarmDomestic);
+      setState("alarmD");
+
       dispatch(setCurrentStep(0))
     } else if (
       formData.service === "Alarm" &&
@@ -161,6 +234,20 @@ const Home = () => {
       [name]: value,
     }));
   };
+  const handleChange3 = (e) => {
+    const { name, value } = e.target;
+    setCCtvC((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+  const handleChange4 = (e) => {
+    const { name, value } = e.target;
+    setAlarmD((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
 
   const nextStep = () => {
     dispatch(setCurrentStep(Math.min(currentStep + 1, steps.length - 1)))
@@ -175,17 +262,17 @@ const Home = () => {
   const isLastStep = currentStep === steps.length - 1;
   return (
     <>
-      {currentStep === 6 ? null :
+      {currentStep === 7 ? null :
         <Sidebar side1={sideState} />
       }
-      <Topbar side1={sideState}/>
-      <div className={currentStep === 6 ? "" : styles.main}>
+      <Topbar side1={sideState} />
+      <div className={currentStep === 7 ? "" : styles.main}>
         <div>
           {StepComponent && (
             <StepComponent
-              formData={state === "cctvd" ? CCtvD : formData}
+              formData={state === "cctvd" ? CCtvD : state === "cctvc" ? CCtvC : state === "alarmD" ? alarmD : formData}
               setVal={setCCtvD}
-              handleChange={state === "cctvd" ? handleChange2 : handleChange}
+              handleChange={state === "cctvd" ? handleChange2 : state === "cctvc" ? handleChange3 : state === "alarmD" ? handleChange4 : handleChange}
               next={nextStep}
             />
           )}

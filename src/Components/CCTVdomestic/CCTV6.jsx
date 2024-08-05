@@ -16,7 +16,6 @@ const CCTV6 = ({ formData, handleChange }) => {
     const { PreferredCamera: preferredCamera } = useSelector((state) => state.setData);
     const dispatch = useDispatch();
 
-    // Local state to manage selected cameras
     const [cameras, setCameras] = useState(preferredCamera);
 
     useEffect(() => {

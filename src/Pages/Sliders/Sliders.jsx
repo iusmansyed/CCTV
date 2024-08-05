@@ -11,32 +11,39 @@ import Img8 from "../../assets/Images/sony.webp";
 import SideBar2 from '../../Components/SideBar2/SideBar2';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FaFilter } from "react-icons/fa";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentStep } from '../../Redux/action';
+import { setCountValue } from '../../Redux/action';
 
 const Sliders = ({ formData, handleChange }) => {
     const preferredCamera = useSelector((state) => state.setData.PreferredCamera);
+    const cameraSelection = useSelector((state) => state.setData.cameraSelection);
+    console.log(cameraSelection, "<<<<<<<<");
+
     const [selectedItem, setSelectedItem] = useState(null);
     const [dataToDisplay, setDataToDisplay] = useState([]);
-    let dispatch = useDispatch()
-    // Define camera data
+    const [countPTZ, setCountPTZ] = useState(cameraSelection['PTZ'] || 0);
+    const [countBullet, setCountBullet] = useState(cameraSelection['Bullet'] || 0);
+    const [countTurret, setCountTurret] = useState(cameraSelection['Turret'] || 0);
+    const [message, setMessage] = useState('');
+
+    let dispatch = useDispatch();
+
     const Data = [
-        { title: "PTZ (Pan-Tilt-Zoom) Cameras", desc: "Description here...", price: "$53.36", img: Img1 },
-        { title: "PTZ (Pan-Tilt-Zoom) Cameras", desc: "Description here...", price: "$53.36", img: Img2 },
-        { title: "PTZ (Pan-Tilt-Zoom) Cameras", desc: "Description here...", price: "$53.36", img: Img3 },
+        { title: "PTZ (Pan-Tilt-Zoom) Cameras", desc: "Description here...", price: "$53.36", img: Img1, category: 'PTZ' },
+        { title: "PTZ (Pan-Tilt-Zoom) Cameras", desc: "Description here...", price: "$53.36", img: Img2, category: 'PTZ' },
+        { title: "PTZ (Pan-Tilt-Zoom) Cameras", desc: "Description here...", price: "$53.36", img: Img3, category: 'PTZ' },
     ];
     const Data2 = [
-        { title: "Bullet Cameras", desc: "Description here...", price: "$53.36", img: Img4 },
-        { title: "Bullet Cameras", desc: "Description here...", price: "$53.36", img: Img5 },
-        { title: "Bullet Cameras", desc: "Description here...", price: "$53.36", img: Img6 },
+        { title: "Bullet Cameras", desc: "Description here...", price: "$53.36", img: Img4, category: 'Bullet' },
+        { title: "Bullet Cameras", desc: "Description here...", price: "$53.36", img: Img5, category: 'Bullet' },
+        { title: "Bullet Cameras", desc: "Description here...", price: "$53.36", img: Img6, category: 'Bullet' },
     ];
     const Data3 = [
-        { title: "Turret Cameras", desc: "Description here...", price: "$53.36", img: Img7 },
-        { title: "Turret Cameras", desc: "Description here...", price: "$53.36", img: Img8 },
-        { title: "Turret Cameras", desc: "Description here...", price: "$53.36", img: Img1 },
+        { title: "Turret Cameras", desc: "Description here...", price: "$53.36", img: Img7, category: 'Turret' },
+        { title: "Turret Cameras", desc: "Description here...", price: "$53.36", img: Img8, category: 'Turret' },
+        { title: "Turret Cameras", desc: "Description here...", price: "$53.36", img: Img1, category: 'Turret' },
     ];
 
     useEffect(() => {
@@ -69,42 +76,86 @@ const Sliders = ({ formData, handleChange }) => {
         setSelectedItem(dataToDisplay[newIndex] || null);
     };
 
-    const handleSelect = (item) => {
-        // Add your selection logic here
+    const handleSelectClick = () => {
+        if (selectedItem) {
+            const { category, title } = selectedItem;
+            let updatedCount = 0;
+
+            if (category === 'PTZ') {
+                if (countPTZ < 4 && countPTZ + countBullet + countTurret < 4) {
+                    updatedCount = countPTZ + 1;
+                    setCountPTZ(updatedCount);
+                } else {
+                    setMessage('You cannot select more than 4 cameras or exceed the limit for this category');
+                    return;
+                }
+            } else if (category === 'Bullet') {
+                if (countBullet < 4 && countPTZ + countBullet + countTurret < 4) {
+                    updatedCount = countBullet + 1;
+                    setCountBullet(updatedCount);
+                } else {
+                    setMessage('You cannot select more than 4 cameras or exceed the limit for this category');
+                    return;
+                }
+            } else if (category === 'Turret') {
+                if (countTurret < 4 && countPTZ + countBullet + countTurret < 4) {
+                    updatedCount = countTurret + 1;
+                    setCountTurret(updatedCount);
+                } else {
+                    setMessage('You cannot select more than 4 cameras or exceed the limit for this category');
+                    return;
+                }
+            }
+
+            dispatch(setCountValue(title, category, updatedCount));
+            setMessage('');
+        }
     };
-    const { currentStep } = useSelector(state => state.currentStep)
-    const changeScreen = () => {
-        dispatch(setCurrentStep(Math.min(currentStep + 1)))
+    const handleSelect = () => {
+
     }
+
     return (
         <>
-            <SideBar2
-                selectedItem={selectedItem}
-                onSelect={handleSelect}
-            />
             <section className={styles.main}>
-                <div className={styles.Filter} onClick={changeScreen}>
-                    <FaFilter /> Filter
-                </div>
-                <div className={styles.camera}>
-                    <Swiper
-                        navigation={true}
-                        modules={[Navigation]}
-                        className="mySwiper"
-                        onSlideChange={handleSlideChange}
-                    >
-                        {dataToDisplay.length > 0 ? (
-                            dataToDisplay.map((item, index) => (
-                                <SwiperSlide key={index}>
-                                    <img src={item.img} alt={item.title} />
+                <div className="container">
+                    <div className="col-lg-12">
+                        <Swiper
+                            navigation={true}
+                            modules={[Navigation]}
+                            className="mySwiper"
+                            onSlideChange={handleSlideChange}
+                        >
+                            {dataToDisplay.length > 0 ? (
+                                dataToDisplay.map((item, index) => (
+                                    <SwiperSlide key={index}>
+                                        <div className={styles.show}>
+                                            <img src={item.img} alt={item.title} />
+                                            <h4>{item.title}</h4>
+                                            <p>{item.desc}</p>
+                                            <p><b>Price</b>: {item.price}</p>
+                                        </div>
+                                    </SwiperSlide>
+                                ))
+                            ) : (
+                                <SwiperSlide>
+                                    <div>Sorry, no cameras are found</div>
                                 </SwiperSlide>
-                            ))
-                        ) : (
-                            <SwiperSlide>
-                                <div>Sorry, no cameras are found</div>
-                            </SwiperSlide>
-                        )}
-                    </Swiper>
+                            )}
+                        </Swiper>
+                        <div className={styles.buttonContainer}>
+                            <button onClick={handleSelectClick} disabled={!selectedItem}>
+                                Select
+                            </button>
+                        </div>
+                        {message && message}
+                    </div>
+                    <div className={styles.siddy}>
+                        <SideBar2
+                            selectedItem={selectedItem}
+                            onSelect={handleSelect}
+                        />
+                    </div>
                 </div>
             </section>
         </>

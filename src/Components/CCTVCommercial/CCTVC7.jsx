@@ -17,7 +17,7 @@ const categoryOptions2 = [
     { value: "6 month", label: "6 month" },
     { value: "1 year", label: "1 year" },
 ];
-const CCTV7 = ({ formData, handleChange }) => {
+const CCTVC7 = ({ formData, handleChange }) => {
     const { currentStep } = useSelector(state => state.currentStep)
     let dispatch = useDispatch();
     const goBack = () =>{
@@ -120,7 +120,7 @@ const CCTV7 = ({ formData, handleChange }) => {
                                 </label>
                             </div>
                         </div>
-                        {/* <div className="col-lg-6">
+                        <div className="col-lg-6">
                             <div className="check">
                                 <label htmlFor="nightVision">
                                     <input
@@ -137,7 +137,7 @@ const CCTV7 = ({ formData, handleChange }) => {
                                     Power Source Availability
                                 </label>
                             </div>
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </section>
@@ -145,4 +145,4 @@ const CCTV7 = ({ formData, handleChange }) => {
     )
 }
 
-export default CCTV7
+export default CCTVC7

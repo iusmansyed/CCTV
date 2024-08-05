@@ -12,7 +12,6 @@ const CCTV1 = ({ formData, handleChange }) => {
 
   return (
     <div>
-     
       <div>
         <CustomDropdown
           options={categoryOptions}

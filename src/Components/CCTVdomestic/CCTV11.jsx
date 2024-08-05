@@ -41,6 +41,40 @@ const CCTV11 = ({ formData, handleChange }) => {
                             Fire Alarm
                         </label>
                     </div>
+                    <div>
+                        <label htmlFor="">
+                            <input
+                                type="checkbox"
+                                name="SmartLocks"
+                                value={true}
+                                checked={formData.SmartLocks === true}
+                                onChange={(e) => handleChange({
+                                    target: {
+                                        name: e.target.name,
+                                        value: e.target.checked,
+                                    }
+                                })}
+                            />
+                           Smart Locks
+                        </label>
+                    </div>
+                    <div>
+                        <label htmlFor="">
+                            <input
+                                type="checkbox"
+                                name="System"
+                                value={true}
+                                checked={formData.system === true}
+                                onChange={(e) => handleChange({
+                                    target: {
+                                        name: e.target.name,
+                                        value: e.target.checked,
+                                    }
+                                })}
+                            />
+                            System
+                        </label>
+                    </div>
                     <div className="col-lg-4">
                         <div className="inp" style={{ marginTop: "20px" }}>
                             <input

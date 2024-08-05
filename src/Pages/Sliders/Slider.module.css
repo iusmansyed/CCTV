@@ -5,7 +5,8 @@
     text-align: center;
     position: relative;
 }
-.Filter{
+
+.Filter {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -17,6 +18,7 @@
     font-family: var(--font-regular);
     cursor: pointer;
 }
+
 .sideBAr {
     height: 100vh;
     width: 350px;
@@ -49,4 +51,71 @@
 .slid {
     width: auto;
     border: 1px solid red;
+}
+
+.show h4 {
+    display: none;
+}
+
+.show p {
+    display: none;
+}
+
+.buttonContainer button {
+    width: 90%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    text-transform: capitalize;
+    margin-top: 30px;
+    background: linear-gradient(90deg, #8195FF, #B3ACFF);
+    color: #fff;
+    font-family: var(--font-regular);
+}
+
+.res {
+    margin-top: 20px;
+}
+
+.res p:nth-child(1) {
+    font-size: 20px;
+}
+
+.res p:nth-child(2) {
+    font-size: 20px;
+    color: red;
+}
+.siddy{
+    display: block;
+}
+.buttonContainer button{
+    display: none;
+}
+@media (max-width:425px) {
+    .show img {
+        width: 100%;
+    }
+
+    .show h4 {
+        display: block;
+        margin-top: 30px;
+        font-family: var(--font-semi);
+        text-align: left;
+    }
+
+    .show p {
+        display: block;
+        font-family: var(--font-regular);
+        text-align: left;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+    .buttonContainer button{
+        display: block;
+    }
+    .siddy {
+        display: none;
+    }
 }
