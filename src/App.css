@@ -14,13 +14,22 @@ input {
   font-family: var(--font-regular);
 }
 
+textarea {
+  background-color: var(--form-bg);
+  border: none;
+  outline: none;
+  padding: 20px 10px;
+  border-radius: 10px;
+  font-family: var(--font-regular);
+}
+
 label {
   text-transform: capitalize;
   font-family: var(--font-regular);
   color: #000;
   font-weight: 600;
   font-size: 20px;
-  
+  margin: 10px 0;
 }
 
 select {
@@ -57,9 +66,11 @@ p {
   position: absolute;
   top: 30px;
 }
-.tooked{
+
+.tooked {
   position: relative;
 }
+
 .takingPhoto2 {
   opacity: 0;
   cursor: pointer;
@@ -67,17 +78,19 @@ p {
   top: -10px;
   width: 100%;
 }
-.inert{
-  background-color:var(--form-bg);
+
+.inert {
+  background-color: var(--form-bg);
   border: none;
   outline: none;
   padding: 20px 10px;
   border-radius: 10px;
   font-family: var(--font-regular);
-display: flex;
-justify-content: space-between;
-align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 .btn {
   float: right;
 }
@@ -104,21 +117,24 @@ input[type=checkbox] {
   margin-right: 10px;
   transform: scale(2);
   padding: 10px;
-  margin-top: 10px;
+  margin: 10px 15px 10px 10px;
 }
+
 input[type=radio] {
   margin-right: 10px;
   transform: scale(2);
   padding: 10px;
   margin-top: 20px;
 }
-.hea{
+
+.hea {
   text-transform: capitalize;
   font-family: var(--font-regular);
   color: #000;
   font-weight: 600;
   font-size: 20px;
 }
+
 .man {
   position: relative;
 }
@@ -129,9 +145,41 @@ input[type=radio] {
   left: -150px;
   font-size: 50px;
 }
+
+.btnassa {
+  padding: 10px 50px;
+  border: none;
+  background-color: var(--sideBar-bg);
+  color: #fff;
+  font-family: var(--font-regular);
+  border-radius: 12px;
+  outline: none;
+}
+
+.resultss h3 {
+  font-family: var(--font-regular);
+  text-transform: capitalize;
+}
+
+.priceBox {
+  border: 3px solid #AD92F9;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px;
+  border-radius: 10px;
+}
+
+.priceBox h4 {
+  margin-bottom: 0;
+  font-family: var(--font-bold);
+  color: #836ACB;
+}
+
 @media (max-width:786px) {
   label {
     font-size: 16px;
-    
+
   }
 }

@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdAttachFile } from "react-icons/md";
 const AlarmD4 = ({ formData, handleChange }) => {
+  const [show, setShow] = useState(false)
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -11,6 +12,7 @@ const AlarmD4 = ({ formData, handleChange }) => {
       reader.readAsDataURL(file);
     }
   };
+
   return (
     <div className="container">
       <div className="row">
@@ -27,6 +29,19 @@ const AlarmD4 = ({ formData, handleChange }) => {
               required
             />
           </div>
+          {show ?
+            <div className="inp">
+              <label htmlFor="description">Add More Description</label>
+              <textarea
+                id="moreDescription"
+                name="moreDescription"
+                placeholder="Enter a Recent Security Incident"
+                value={formData.moreDescription}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            : null}
         </div>
         <div className="col-lg-12">
           <div className="inp">
@@ -127,6 +142,12 @@ const AlarmD4 = ({ formData, handleChange }) => {
                   required
                 />
               </div>
+            </div>
+            <div className="col-lg-6"></div>
+            <div className="col-lg-6">
+              <button className='btnassa' onClick={() => setShow(true)}>
+                Add more
+              </button>
             </div>
           </div>
         </div>

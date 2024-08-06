@@ -71,7 +71,7 @@ const CCTV7 = ({ formData, handleChange }) => {
                                 <label htmlFor="">
                                     <input
                                         type="checkbox"
-                                        name="MotionDetection"
+                                        name="motionDetection"
                                         checked={formData.motionDetection}
                                         onChange={(e) => handleChange({
                                             target: {

@@ -62,7 +62,7 @@ const CCTVC11 = ({ formData, handleChange }) => {
             <label htmlFor="">
               <input
                 type="checkbox"
-                name="System"
+                name="system"
                 value={true}
                 checked={formData.system === true}
                 onChange={(e) => handleChange({

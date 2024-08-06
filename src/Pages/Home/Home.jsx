@@ -8,7 +8,11 @@ import AD2 from "../../Components/AlarmDomestic/AlarmD2";
 import AD3 from "../../Components/AlarmDomestic/AlarmD3";
 import AD4 from "../../Components/AlarmDomestic/AlarmD4";
 import AD5 from "../../Components/AlarmDomestic/AlarmD5";
-import AC1 from "../../Components/AlarmCommercial/Step1";
+import AC1 from "../../Components/AlarmCommercial/AlarmC1";
+import AC2 from "../../Components/AlarmCommercial/AlarmC2";
+import AC3 from "../../Components/AlarmCommercial/AlarmC3";
+import AC4 from "../../Components/AlarmCommercial/AlarmC4";
+import AC5 from "../../Components/AlarmCommercial/AlarmC5";
 import CC1 from "../../Components/CCTVCommercial/CCTVC1";
 import CC2 from "../../Components/CCTVCommercial/CCTVC2";
 import CC3 from "../../Components/CCTVCommercial/CCTVC3";
@@ -40,17 +44,19 @@ import { useDispatch, useSelector } from "react-redux";
 import Topbar from "../../Components/topBar/Topbar";
 
 const defaultSteps = [Step1, Step2, Step3];
-// const defaultSteps = [CD6, Sliders];
+// const defaultSteps = [AC1, AC2, AC3, AC4, AC5];
 const CCTVDomestic = [CD1, CD2, CD3, CD4, CD5, CD6, Sliders, CD7, CD8, CD9, CD10, CD11, ThankYou];
-const CCTVCommercial = [CC1, CC2, CC3, CC4, CC5, CC6, Sliders, CC7, CC8, CC9, CC10, CC11];
+const CCTVCommercial = [CC1, CC2, CC3, CC4, CC5, CC6, Sliders, CC7, CC8, CC9, CC10, CC11, ThankYou];
 const AlarmDomestic = [AD1, AD2, AD3, AD4, AD5];
-const AlarmCommercial = [AC1];
+const AlarmCommercial = [AC1, AC2, AC3, AC4, AC5];
 
 const Home = () => {
   const dispatch = useDispatch()
   const { currentStep } = useSelector(state => state.currentStep)
   const [state, setState] = useState("");
   const [sideState, setSideState] = useState(false);
+  console.log(sideState,"side state >>>>>>>>");
+  
   const [sideState1, setSideState1] = useState(false);
   const [sideState2, setSideState2] = useState(false);
   const [sideState3, setSideState3] = useState(false);
@@ -58,20 +64,46 @@ const Home = () => {
   const [sideState5, setSideState5] = useState(false);
   const [steps, setSteps] = useState([]); // Initialize with default steps
   useEffect(() => {
-    if (currentStep === 3) {
-      setSideState(true)
-    }
-    if (currentStep === 6) {
-      setSideState(true)
-    }
-    if (currentStep === 9) {
-      setSideState(true)
-    }
-    if (currentStep === 10) {
-      setSideState(true)
-    }
-    if (currentStep === 6) {
-      setSideState(true)
+    if (state === "cctvd" || state === "cctvc") {
+      if (formData.fullName != "" || formData.email != "" || formData.address != "" || formData.postal != "" || formData.sector != "" || formData.service != "" ) {
+        setSideState(true)
+      }
+      if (currentStep === 3) {
+        setSideState1(true)
+      }
+      if (currentStep === 5) {
+        setSideState2(true)
+      }
+      if (currentStep === 7) {
+        setSideState3(true)
+      }
+      if (currentStep === 9) {
+        setSideState4(true)
+      }
+      if (currentStep === 12) {
+        setSideState4(true)
+      }
+      if (currentStep === 13) {
+        setSideState5(true)
+      }
+    }else if (state === "alarmD" ||  state === "alarmC") {
+      if (formData.fullName || formData.email || formData.address || formData.postal) {
+        setSideState(true)
+      } if (currentStep === 1) {
+        setSideState1(true)
+      }
+      if (currentStep === 2) {
+        setSideState2(true)
+      }
+      if (currentStep === 3) {
+        setSideState3(true)
+      }
+      if (currentStep === 4) {
+        setSideState4(true)
+      }
+      if (currentStep === 5) {
+        setSideState5(true)
+      }
     }
 
   }, [currentStep])
@@ -85,6 +117,7 @@ const Home = () => {
     service: "",
     sector: "",
   });
+console.log(formData);
 
   const [CCtvD, setCCtvD] = useState({
     postal: "",
@@ -171,20 +204,34 @@ const Home = () => {
     Phone: "",
     SMS: "",
   });
-  const [alarmD, setAlarmD] =useState ({
-    house:"",
-    size:"",
-    numberOfFloor:"",
-    numberOfEntry:"",
-    ControlLocation:"",
-    localPower:"",
-    DescriptionConnection:"",
-    description:"",
-    approxDistance:"",
-    Sensors:"",
-    Doorcontacts:"",
-    
+  const [alarmD, setAlarmD] = useState({
+    house: "",
+    size: "",
+    numberOfFloor: "",
+    numberOfEntry: "",
+    ControlLocation: "",
+    localPower: "",
+    DescriptionConnection: "",
+    description: "",
+    approxDistance: "",
+    Sensors: "",
+    Doorcontacts: "",
+    moreDescription: ""
+
   })
+  const [alarmC, setAlarmC] = useState({
+    selectSector: "",
+    wired: "",
+    Wireless: "",
+    size: "",
+    numberOfFloor: "",
+    numberOfEntry: "",
+    Sensors: "",
+    Doorcontacts: "",
+    localPower: "",
+    DescriptionConnection: "",
+  })
+  console.log(alarmC, "jsadhksa");
 
   useEffect(() => {
     dispatch({ type: SET_ALL_VALUE, payload: formData });
@@ -215,6 +262,7 @@ const Home = () => {
       formData.sector === "Commercial"
     ) {
       setSteps(AlarmCommercial);
+      setState("alarmC");
       dispatch(setCurrentStep(0))
     }
   }, [formData.service, formData.sector, steps, dispatch, setCurrentStep]);
@@ -248,6 +296,13 @@ const Home = () => {
       [name]: value,
     }));
   };
+  const handleChange5 = (e) => {
+    const { name, value } = e.target;
+    setAlarmC((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
 
   const nextStep = () => {
     dispatch(setCurrentStep(Math.min(currentStep + 1, steps.length - 1)))
@@ -262,17 +317,17 @@ const Home = () => {
   const isLastStep = currentStep === steps.length - 1;
   return (
     <>
-      {currentStep === 7 ? null :
-        <Sidebar side1={sideState} />
+      {currentStep === 6 ? null :
+        <Sidebar side1={sideState} side2={sideState1} side3={sideState2} side4={sideState3} side5={sideState4} side6={sideState5} />
       }
       <Topbar side1={sideState} />
-      <div className={currentStep === 7 ? "" : styles.main}>
+      <div className={currentStep === 6 ? "" : styles.main}>
         <div>
           {StepComponent && (
             <StepComponent
-              formData={state === "cctvd" ? CCtvD : state === "cctvc" ? CCtvC : state === "alarmD" ? alarmD : formData}
+              formData={state === "cctvd" ? CCtvD : state === "cctvc" ? CCtvC : state === "alarmD" ? alarmD : state === "alarmC" ? alarmC : formData}
               setVal={setCCtvD}
-              handleChange={state === "cctvd" ? handleChange2 : state === "cctvc" ? handleChange3 : state === "alarmD" ? handleChange4 : handleChange}
+              handleChange={state === "cctvd" ? handleChange2 : state === "cctvc" ? handleChange3 : state === "alarmD" ? handleChange4 : state === "alarmC" ? handleChange5 : handleChange}
               next={nextStep}
             />
           )}

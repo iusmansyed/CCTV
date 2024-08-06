@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdAttachFile } from "react-icons/md";
 
-const AlarmD5 = ({ formData, handleChange }) => {
+const AlarmC5 = ({ formData, handleChange }) => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -82,4 +82,4 @@ const AlarmD5 = ({ formData, handleChange }) => {
   )
 }
 
-export default AlarmD5
+export default AlarmC5
