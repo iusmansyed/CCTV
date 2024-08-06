@@ -320,7 +320,7 @@ console.log(formData);
       {currentStep === 6 ? null :
         <Sidebar side1={sideState} side2={sideState1} side3={sideState2} side4={sideState3} side5={sideState4} side6={sideState5} />
       }
-      <Topbar side1={sideState} />
+      <Topbar side1={sideState} side2={sideState1} side3={sideState2} side4={sideState3} side5={sideState4} side6={sideState5} />
       <div className={currentStep === 6 ? "" : styles.main}>
         <div>
           {StepComponent && (
